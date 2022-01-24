@@ -9,6 +9,7 @@ typedef struct Node{
 Node *head = NULL;
 
 void insert_head(int x){
+  /* Allocate memory for new node */
   Node *newNode = (Node*)malloc(sizeof(Node));
   
   printf("%s: Inserting head node with data %d\n", __FUNCTION__, x);
@@ -17,11 +18,12 @@ void insert_head(int x){
   newNode->data=x;
   newNode->next=head;
   
-  /* Set the hea pointer to new node */
+  /* Set the head pointer to new node */
   head = newNode;
 }
 
 void insert_tail(int x){
+  /* Allocate memory for new node */
   Node *newNode = (Node*)malloc(sizeof(Node));
   Node *countNode = head;
   
@@ -34,6 +36,7 @@ void insert_tail(int x){
   while(countNode->next != NULL){
     countNode = countNode->next;  
   }
+
   /* Point the current tail node at the new node */
   countNode->next = newNode;
 }
@@ -44,7 +47,8 @@ void node_print(int x){
   
   printf("%s: ", __FUNCTION__);
   for(count=0;count<x;count++){
-    printf("%d ", countNode->data);
+    printf("Node %d || ", count );
+    printf("%d\n", countNode->data);
     countNode = countNode->next;
     if(countNode == NULL){
       break;
@@ -57,11 +61,13 @@ void main(void) {
   int data[10]={ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
   int i=0;
   
+  /* insert nodes at both head & tail with data from data[x] */
   for(i=0;i<(sizeof(data)/sizeof(int));i++){
     insert_head(data[i]);
     insert_tail(data[i]);
   }
   
+  /* print all the nodes */
   node_print(20);
   
   return 0;
